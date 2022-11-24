@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  keycloak:
+    environment:
+      KC_HOSTNAME: ${KC_HOSTNAME}
+      KC_HOSTNAME_PATH: ${KC_HOSTNAME_PATH}
+      KC_HOSTNAME_ADMIN: ${KC_HOSTNAME_ADMIN}
+      KC_PROXY: edge
+      KC_HOSTNAME_PORT: 443
+      KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/conf/domaincert.key
+      KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/conf/domaincert.crt
+    volumes:
+      - ${HTTPS_CERT_KEY}:/opt/keycloak/conf/domaincert.key
+      - ${HTTPS_CERT_CRT}:/opt/keycloak/conf/domaincert.crt
