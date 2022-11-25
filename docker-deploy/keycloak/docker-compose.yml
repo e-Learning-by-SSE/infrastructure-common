@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres:
+      image: postgres
+      volumes:
+        - ./postgres_data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_DB: keycloak
+        POSTGRES_USER: ${POSTGRESQL_USER}
+        POSTGRES_PASSWORD: ${POSTGRESQL_PASS}
+        PGDATA: /var/lib/postgresql/data
+
+  keycloak:
+      image: quay.io/keycloak/keycloak:latest
+      command: ["start"]
+      environment:
+        KEYCLOAK_ADMIN: ${KC_ADMIN}
+        KEYCLOAK_ADMIN_PASSWORD: ${KC_ADMIN_PW}
+        KC_DB: postgres
+        KC_DB_SCHEMA: public
+        KC_DB_URL_HOST: postgres
+        KC_DB_USERNAME: ${POSTGRESQL_USER}
+        KC_DB_PASSWORD: ${POSTGRESQL_PASS}
+        KC_HOSTNAME: ${HOSTNAME}
+        KC_PROXY: edge
+        KC_HOSTNAME_STRICT: 'false'
+        KC_HTTP_ENABLED: 'true'
+      ports:
+        - 8080:8080
+      depends_on:
+        - postgres
