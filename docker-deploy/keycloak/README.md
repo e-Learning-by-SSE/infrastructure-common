@@ -21,7 +21,7 @@ Replace the neccessary entries.
 Then decide for one of the following options: 
 
 
-**Option 1 - apache2 reverse proxy:**
+**Option 1 - apache2 reverse proxy:**<br>
 You can use any web server as reverse proxy. In this section we provide an example with apache2.
 
 - Use the `docker-compose.yml` 
@@ -49,7 +49,7 @@ To start the container run
 $ docker compose up -d
 ```
 
-**Option 2 - native HTTPS:**
+**Option 2 - native HTTPS:**<br>
 To run keycloak with native https, you can use the `https-override.yml` alongside with the `docker-compose.yml`. 
 Firt you need to add the follwing environment variables to your `.env`
   ```.env
