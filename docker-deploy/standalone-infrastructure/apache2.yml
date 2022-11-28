@@ -1,0 +1,11 @@
+version: '2'
+services:
+  apache:
+    image: docker.io/bitnami/apache:2.4
+    ports:
+      - 443:8443
+    volumes:
+      - ./vhost.conf:/vhosts/vhost.conf
+  keycloak:
+    environment:
+      KC_HTTP_RELATIVE_PATH: /config

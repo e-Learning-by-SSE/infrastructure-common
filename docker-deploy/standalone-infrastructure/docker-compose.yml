@@ -1,9 +1,5 @@
 version: '3.7'
 
-volumes:
-  postgres_data:
-      driver: local
-
 services:
   postgres:
       image: postgres
@@ -30,9 +26,9 @@ services:
       KC_PROXY: edge
       KC_HOSTNAME_STRICT: 'false'
       KC_HTTP_ENABLED: 'true'
-      KC_PROY_ADDRESS_FORWARDING: 'true'
+      KC_PROXY_ADDRESS_FORWARDING: 'true'
     ports:
-      - 8080:8080
+      - 8070:8080
     healthcheck:
       test: ["CMD-SHELL", "curl https://staging.sse.uni-hildesheim.de:8443/health/ready --fail"]
       #start_period: 30s
