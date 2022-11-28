@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  registry:
+    image: ghcr.io/e-learning-by-sse/infrastructure-registry:1
+    container_name: infrastructure-registry
+    image: ghcr.io/e-learning-by-sse/infrastructure-registry:unstable
+    restart: unless-stopped
+    environment:
+      EUREKA_INSTANCE_HOSTNAME: ${HOSTNAME}
+      EUREKA-ZONE: http://infrastructure-registry:8761/eureka
+      SPRING_APPLICATION_NAME: registry
+      SPRING_PROFILES_ACTIVE: prod
+      EUREKA_INSTANCE_PREFER-IP-ADDRESS: 'true'
+    volumes:
+      - ./registry-config.yml:/workspace/application-prod.yml
+
+  gateway:
+    image: ghcr.io/e-learning-by-sse/infrastructure-gateway:unstable
+    restart: unless-stopped
+    environment:
+      GW_EUREKA_IP: http://infrastructure-registry:8761/eureka
+      GW_OIDC_ISSUER: http://${HOSTNAME}:8080
+      GW_OIDC_CLIENTID: ${GW_OIDC_CLIENTID}
+      GW_OIDC_SECRET: ${GW_OIDC_SECRET}
+      SPRING_PROFILES_ACTIVE: docker,prod
+    volumes:
+      - ./gateway-config.yml:/workspace/application-prod.yml
+    ports: 
+      - 8090:8080
+    depends_on:
+      registry:
+        condition: service_started
