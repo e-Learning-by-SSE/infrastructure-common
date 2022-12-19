@@ -3,6 +3,7 @@ version: '3.8'
 services:
   postgres:
       image: postgres
+      restart: unless-stopped
       volumes:
         - ./postgres_data:/var/lib/postgresql/data
       environment:
@@ -14,6 +15,7 @@ services:
   keycloak:
       image: quay.io/keycloak/keycloak:latest
       command: ["start"]
+      restart: unless-stopped
       environment:
         KEYCLOAK_ADMIN: ${KC_ADMIN}
         KEYCLOAK_ADMIN_PASSWORD: ${KC_ADMIN_PW}
