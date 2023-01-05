@@ -39,17 +39,16 @@ The gateway waits until the keycloak container is healthy. This is necessary bec
 
 ### Registry
 The registry is used by the gateway. It does not expose any ports (the exposed port of the container is 8761). Typically it isn't necessary to make furthor configuration to the registry. If you really need it, you can set all spring configurations as environment (replace dots with underscores: spring.profiles.active -> SPRING_PROFILES_ACTIVE).
-You can also mount a complete application file by adding the following to the compose:
+You can also mount a complete application file by creating a `docker-compose-override.yml` with the following content:
 
-```diff
-      depends_on:
-        - postgres
+```yaml
+version: '3.9'
+
+services:
   registry:
-    image: ghcr.io/e-learning-by-sse/infrastructure-registry:1
-+ environment:    
-+   SPRING_PROFILES_ACTIVE: prod 
-+ volumes:
-+   - ./application-prod.yml:/workspace/application-prod.yml
-  gateway:
-    build: 
- ```
+    environment:    
+      SPRING_PROFILES_ACTIVE: prod
+    volumes:
+      - ./registry-config.yml:/workspace/application-prod.yml
+
+```

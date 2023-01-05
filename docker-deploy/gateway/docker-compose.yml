@@ -10,10 +10,7 @@ services:
       EUREKA_INSTANCE_HOSTNAME: ${HOSTNAME}
       EUREKA-ZONE: http://infrastructure-registry:8761/eureka
       SPRING_APPLICATION_NAME: registry
-      SPRING_PROFILES_ACTIVE: prod
       EUREKA_INSTANCE_PREFER-IP-ADDRESS: 'true'
-    volumes:
-      - ./registry-config.yml:/workspace/application-prod.yml
 
   gateway:
     image: ghcr.io/e-learning-by-sse/infrastructure-gateway:unstable
