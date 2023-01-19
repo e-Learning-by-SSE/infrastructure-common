@@ -2,7 +2,6 @@ version: '3.8'
 services:
   keycloak:
     environment:
-      KC_HOSTNAME: ${KC_HOSTNAME}
       KC_HOSTNAME_STRICT: 'true'
       #KC_HOSTNAME_PATH: ${KC_HOSTNAME_PATH}
       #KC_HOSTNAME_ADMIN: ${KC_HOSTNAME_ADMIN}
