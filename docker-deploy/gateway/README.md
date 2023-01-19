@@ -21,7 +21,7 @@ To create a p12 keystore use:
 $ openssl pkcs12 -export -in server-fullchain.pem -inkey server.key -out server.p12
 ```
 
-Then set the keystore via environment variable in the docker compose file (you can also provide the setting via the `gateway-config.yml`) and mount the keystore. This can be done by creating a file called `docker-compose-override.yml` with the following content:
+Then set the keystore via environment variable in the docker compose file (you can also provide the setting via the `gateway-config.yml`) and mount the keystore. This can be done by creating a file called `docker-compose.override.yml` with the following content:
 
 ```yaml
 version: '3.9'
