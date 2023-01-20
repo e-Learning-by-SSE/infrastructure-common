@@ -16,7 +16,7 @@ services:
     image: ghcr.io/e-learning-by-sse/infrastructure-gateway:unstable
     restart: unless-stopped
     environment:
-      GW_EUREKA_IP: http://infrastructure-registry:8761/eureka
+      GW_EUREKA_ZONE: http://infrastructure-registry:8761/eureka
       GW_OIDC_ISSUER: ${GW_OIDC_ISSUER}
       GW_OIDC_CLIENTID: ${GW_OIDC_CLIENTID}
       GW_OIDC_SECRET: ${GW_OIDC_SECRET}
