@@ -4,7 +4,7 @@ services:
   registry:
     image: ghcr.io/e-learning-by-sse/infrastructure-registry:1
     container_name: infrastructure-registry
-    image: ghcr.io/e-learning-by-sse/infrastructure-registry:unstable
+    image: ghcr.io/e-learning-by-sse/infrastructure-registry:latest
     restart: unless-stopped
     environment:
       EUREKA_INSTANCE_HOSTNAME: ${HOSTNAME}
@@ -13,7 +13,7 @@ services:
       EUREKA_INSTANCE_PREFER-IP-ADDRESS: 'true'
 
   gateway:
-    image: ghcr.io/e-learning-by-sse/infrastructure-gateway:unstable
+    image: ghcr.io/e-learning-by-sse/infrastructure-gateway:latest
     restart: unless-stopped
     environment:
       GW_EUREKA_ZONE: http://infrastructure-registry:8761/eureka
