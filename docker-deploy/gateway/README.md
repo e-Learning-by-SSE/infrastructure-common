@@ -5,6 +5,8 @@ The repository contains a docker-compose.yml to start the registry and gateway. 
 
 The gateway uses the internal registry automatically. You just have to provide the OIDC settings (via environment variables):
 ```.env
+HOSTNAME=<URL> # is used for eureka: Public reachable hostname
+GW_OIDC_ISSUER=<URL> 
 GW_OIDC_CLIENTID=sse-gateway
 GW_OIDC_SECRET=<secret>
 ```
