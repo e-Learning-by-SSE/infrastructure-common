@@ -1,0 +1,6 @@
+**/.env
+**/postgres_data
+**/docker-compose.override.yml
+*.crt
+*.key
+*.p12
